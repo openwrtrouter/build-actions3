@@ -142,7 +142,7 @@ jobs:
     - name: 编译信息
       continue-on-error: true
       if: env.COMPILATION_INFORMATION == 'true'
-      uses: openwrtrouter/common2@message
+      uses: 281677160/common@message
     
     - name: 清理Actions空间
       continue-on-error: true
