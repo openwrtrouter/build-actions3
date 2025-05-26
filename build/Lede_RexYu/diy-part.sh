@@ -6,9 +6,9 @@
 
 
 # 后台IP设置
-export Ipv4_ipaddr="192.168.2.2"            # 修改openwrt后台地址(填0为关闭)
-export Netmask_netm="255.255.255.0"         # IPv4 子网掩码（默认：255.255.255.0）(填0为不作修改)
-export Op_name="OpenWrt-123"                # 修改主机名称为OpenWrt-123(填0为不作修改)
+export Ipv4_ipaddr="172.20.1.1"            # 修改openwrt后台地址(填0为关闭)
+export Netmask_netm="255.255.252.0"         # IPv4 子网掩码（默认：255.255.255.0）(填0为不作修改)
+export Op_name="PrivateNetwork"                # 修改主机名称为OpenWrt-123(填0为不作修改)
 
 # 内核和系统分区大小(不是每个机型都可用)
 export Kernel_partition_size="0"            # 内核分区大小,每个机型默认值不一样 (填写您想要的数值,默认一般16,数值以MB计算，填0为不作修改),如果你不懂就填0
@@ -94,3 +94,10 @@ EOF
 # 在线更新时，删除不想保留固件的某个文件，在EOF跟EOF之间加入删除代码，记住这里对应的是固件的文件路径，比如： rm -rf /etc/config/luci
 cat >>$DELETE <<-EOF
 EOF
+
+# 增加luci-app-easytier
+git clone https://github.com/EasyTier/luci-app-easytier.git ./package/luci-app-easytier
+
+#升级脚本创建模板
+./scripts/feeds update -a
+make defconfig
